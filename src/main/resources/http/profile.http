@@ -1,0 +1,47 @@
+### Create student
+POST localhost:8080/profile/create
+Content-Type: application/json
+
+{
+  "name": "Abdullo",
+  "surname": "Navruzov",
+  "email": "navruzovabdullo00@gmail.com",
+  "phone": "+998904641224",
+  "password": "998904641224",
+  "role": "USER"
+}
+
+### Update by id
+PUT localhost:8080/profile/simple/1
+Content-Type: application/json
+
+{
+  "name": "Abdu",
+  "surname": "Alimov"
+}
+
+### Update by id
+PUT localhost:8080/profile/admin/1
+Content-Type: application/json
+
+{
+  "name": "Ali",
+  "surname": "Aliyev",
+  "email": "sobachka@.ru",
+  "phone": "+990997307535",
+  "password": "qwerty",
+  "status": "BLOCKED",
+  "role": "MODERATOR"
+}
+
+### Get by pages
+GET localhost:8080/profile/pagination/all?page=1&size=10
+
+### Filter
+POST localhost:8080/profile/filter
+Content-Type: application/json
+
+{
+  "name": "Ali"
+}
+
