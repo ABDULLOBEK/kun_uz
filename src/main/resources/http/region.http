@@ -1,0 +1,27 @@
+### Create student
+POST localhost:8080/region/create
+Content-Type: application/json
+
+{
+  "orderNum": 1,
+  "nameUz": "Samarqand",
+  "nameRu": "Самарканд",
+  "nameEn": "Samarqand"
+}
+
+
+### Update by id
+PUT localhost:8080/region/1
+Content-Type: application/json
+
+{
+  "orderNum": 1,
+  "nameUz": "Toshkent",
+  "nameRu": "Ташкент",
+  "nameEn": "Tashkent"
+}
+
+
+### Get all
+GET localhost:8080/profile/pagination/all
+
