@@ -1,5 +1,5 @@
 ### Create student
-POST localhost:8080/region/create
+POST localhost:8080/category/create
 Content-Type: application/json
 
 {
@@ -11,7 +11,7 @@ Content-Type: application/json
 
 
 ### Update by id
-PUT localhost:8080/region/1
+PUT localhost:8080/category/1
 Content-Type: application/json
 
 {
@@ -23,5 +23,5 @@ Content-Type: application/json
 
 
 ### Get all
-GET localhost:8080/region/all
+GET localhost:8080/category/all
 
