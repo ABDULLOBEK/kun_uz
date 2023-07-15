@@ -1,9 +1,9 @@
 ### Create student
-POST localhost:8080/region/create
+POST localhost:8080/api/v1/region/create
 Content-Type: application/json
 
 {
-  "orderNum": 1,
+  "orderNum": 2,
   "nameUz": "Samarqand",
   "nameRu": "Самарканд",
   "nameEn": "Samarqand"
@@ -21,6 +21,9 @@ Content-Type: application/json
   "nameEn": "Tashkent"
 }
 
+
+### Create pofile
+GET localhost:8080/api/v1/region/lang?lang=uz
 
 ### Get all
 GET localhost:8080/region/all

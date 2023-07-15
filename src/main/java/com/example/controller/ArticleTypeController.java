@@ -1,8 +1,9 @@
 package com.example.controller;
 
+import com.example.dto.ArticleTypeDTO;
 import com.example.dto.RegionDTO;
 import com.example.enums.Language;
-import com.example.service.RegionService;
+import com.example.service.ArticleTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,26 +12,26 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/region")
-public class RegionController {
+@RequestMapping("/api/v1/articleType")
+public class ArticleTypeController {
     @Autowired
-    private RegionService regionService;
+    private ArticleTypeService articleTypeService;
 
-    @PostMapping("/create")
-    public ResponseEntity<?> create(@RequestBody RegionDTO region){
-        RegionDTO response = regionService.add(region);
+    @PostMapping("")
+    public ResponseEntity<?> create(@RequestBody ArticleTypeDTO articleType){
+        ArticleTypeDTO response = articleTypeService.add(articleType);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody RegionDTO region,
-                                 @PathVariable("id") Integer id){
-        return ResponseEntity.ok(regionService.update(id, region));
+    public ResponseEntity<?> update(@RequestBody ArticleTypeDTO articleType,
+                                    @PathVariable("id") Integer id){
+        return ResponseEntity.ok(articleTypeService.update(id, articleType));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") Integer id){
-        String  response = regionService.delete(id);
+        String  response = articleTypeService.delete(id);
         if(response.length()>0){
             return ResponseEntity.ok("Student Deleted");
         }
@@ -38,12 +39,25 @@ public class RegionController {
     }
 
     @GetMapping("/all")
-    public List<RegionDTO> all(){
-        return regionService.getAll();
+    public List<ArticleTypeDTO> all(){
+        return articleTypeService.getAll();
     }
 
     @GetMapping("/lang")
     public ResponseEntity<?> getByLang(@RequestParam("lang") Language lang){
-        return ResponseEntity.ok(regionService.getByLang(lang));
+        return ResponseEntity.ok(articleTypeService.getByLang(lang));
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -1,5 +1,5 @@
 ### Create student
-POST localhost:8080/profile/create
+POST localhost:8080/profile
 Content-Type: application/json
 
 {
@@ -21,7 +21,7 @@ Content-Type: application/json
 }
 
 ### Update by id
-PUT localhost:8080/profile/admin/1
+PUT localhost:8080/profile/1
 Content-Type: application/json
 
 {
