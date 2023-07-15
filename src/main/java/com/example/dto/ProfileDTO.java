@@ -18,6 +18,5 @@ public class ProfileDTO {
     private String password;
     private ProfileStatus status;
     private ProfileRole role;
-    private Boolean visible;
     private LocalDateTime createdDate;
 }

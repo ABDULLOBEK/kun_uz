@@ -34,14 +34,16 @@ public class ProfileEntity {
     private String password;
 
     @Column(name = "status")
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private ProfileStatus status;
 
     @Column(name = "role")
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private ProfileRole role;
 
     @Column(name = "visible")
-    private Boolean visible;
+    private Boolean visible=Boolean.TRUE;
 
     @Column(name = "created_date")
-    private LocalDateTime createdDate;
+    private LocalDateTime createdDate=LocalDateTime.now();
 }

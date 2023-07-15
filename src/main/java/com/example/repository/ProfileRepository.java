@@ -11,16 +11,32 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
+
 @Repository
 public interface ProfileRepository extends CrudRepository<ProfileEntity, Integer>, PagingAndSortingRepository<ProfileEntity, Integer> {
-//2
+    Optional<ProfileEntity> findByEmail(String email);
+
+    Optional<ProfileEntity> findByPhone(String phone);
+
+    //2
     @Transactional
     @Modifying
     @Query("update ProfileEntity as p set p.name=:name, p.surname=:surname, p.email=:email, p.phone=:phone,p.password=:password, p.status=:status,p.role=:role where p.id=:id")
     int update(@Param("id") Integer id, @Param("name") String name, @Param("surname") String surname, @Param("email") String email,@Param("phone") String phone,@Param("password") String password,@Param("status") String status,@Param("role") String role);
-//3
+
+    //3
     @Transactional
     @Modifying
     @Query("update ProfileEntity as p set p.name=:name, p.surname=:surname where p.id=:id")
     int updateSimple(@Param("id") Integer id, @Param("name") String name, @Param("surname") String surname);
+
+    List<ProfileEntity> findAllByVisibleTrue();
+
+    @Transactional
+    @Modifying
+    @Query("update ProfileEntity set visible = false where id =:id")
+    int delete(@Param("id") Integer id);
 }

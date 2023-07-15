@@ -12,44 +12,38 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/profile")
+@RequestMapping("/api/v1/profile")
 public class ProfileController {
     @Autowired
     private ProfileService profileService;
 
-    @PostMapping("/create")
+    @PostMapping("")
     public ResponseEntity<?> create(@RequestBody ProfileDTO profile){
         ProfileDTO response = profileService.create(profile);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PutMapping("/admin/{id}")
-    public ResponseEntity<?> put(@RequestBody ProfileDTO profile,
+    @PutMapping("//{id}")
+    public ResponseEntity<?> update(@RequestBody ProfileDTO profile,
                                  @PathVariable("id") Integer id){
-        profileService.update(id, profile);
-        return ResponseEntity.ok(true);
+        return ResponseEntity.ok(profileService.update(id, profile));
     }
 
     @PutMapping("/simple/{id}")
-    public ResponseEntity<?> putSimple(@RequestBody ProfileDTO profile,
+    public ResponseEntity<Boolean> updateSimple(@RequestBody ProfileDTO profile,
                                  @PathVariable("id") Integer id){
-        profileService.updateSimple(id, profile);
-        return ResponseEntity.ok(true);
+        return ResponseEntity.ok(profileService.updateSimple(id, profile));
     }
 
-    @GetMapping(value = "/pagination/all")
-    public ResponseEntity<?> pagination(@RequestParam(value = "page", defaultValue = "1") int page,
-                                        @RequestParam(value = "size", defaultValue = "10") int size) {
-        return ResponseEntity.ok(profileService.getAll(page - 1, size));
+    @GetMapping(value = "")
+    public ResponseEntity<List<ProfileDTO>> getAll() {
+        return ResponseEntity.ok(profileService.getAll());
     }
+
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable("id") Integer id){
-        String response = profileService.delete(id);
-        if(response.length()>0){
-            return ResponseEntity.ok("Profile Deleted");
-        }
-        return ResponseEntity.badRequest().body("Profile not found");
+    public ResponseEntity<Boolean> delete(@PathVariable("id") Integer id){
+        return ResponseEntity.ok(profileService.delete(id));
     }
 
     @PostMapping(value = "/filter")
