@@ -29,8 +29,8 @@ public class CategoryEntity {
     private String nameRu;
 
     @Column(name = "visible")
-    private Boolean visible;
+    private Boolean visible=Boolean.TRUE;
 
     @Column(name = "crated_date")
-    private LocalDateTime createdDate;
+    private LocalDateTime createdDate=LocalDateTime.now();
 }

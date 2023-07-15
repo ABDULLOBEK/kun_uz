@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.example.dto.CategoryDTO;
 import com.example.dto.RegionDTO;
+import com.example.enums.Language;
 import com.example.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,12 +13,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/category")
+@RequestMapping("/api/v1/category")
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @PostMapping("/create")
+    @PostMapping("")
     public ResponseEntity<?> create(@RequestBody CategoryDTO category){
         CategoryDTO response = categoryService.add(category);
         return new ResponseEntity<>(response, HttpStatus.OK);
@@ -45,7 +46,7 @@ public class CategoryController {
     }
 
     @GetMapping("/lang")
-    public ResponseEntity<?> getByLang(@RequestParam("lang") String lang){
+    public ResponseEntity<?> getByLang(@RequestParam("lang") Language lang){
         return ResponseEntity.ok(categoryService.getByLang(lang));
     }
 }

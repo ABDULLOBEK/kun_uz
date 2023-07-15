@@ -4,6 +4,7 @@ import com.example.dto.CategoryDTO;
 import com.example.dto.RegionDTO;
 import com.example.entity.CategoryEntity;
 import com.example.entity.RegionEntity;
+import com.example.enums.Language;
 import com.example.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,18 +43,18 @@ public class CategoryService {
         return dtoList;
     }
 
-    public List<CategoryDTO> getByLang(String language){
-        if(language.equals("en")){
-            return  getRegionDTOS(categoryRepository.getNameEn());
-        }
-        if(language.equals("uz")){
-            return  getRegionDTOS(categoryRepository.getNameUZ());
-        }
-        if(language.equals("ru")){
-            return  getRegionDTOS(categoryRepository.getNameRu());
-        }
-        return null;
+    public List<CategoryDTO> getByLang(Language lang) {
+        List<CategoryDTO> dtoList = new LinkedList<>();
+        categoryRepository.findAllByLang(lang.name()).forEach(mapper -> {
+            CategoryDTO dto = new CategoryDTO();
+            dto.setId(mapper.getId());
+            dto.setOrderNum(mapper.getOrderNumber());
+            dto.setName(mapper.getName());
+            dtoList.add(dto);
+        });
+        return dtoList;
     }
+
 
     private List<CategoryDTO> getRegionDTOS(List<CategoryEntity> entityList) {
         List<CategoryDTO> dtoList = new LinkedList<>();
@@ -84,8 +85,6 @@ public class CategoryService {
         entity.setNameUz(dto.getNameUz());
         entity.setNameEn(dto.getNameEn());
         entity.setNameRu(dto.getNameRu());
-        entity.setVisible(dto.getVisible());
-        entity.setCreatedDate(LocalDateTime.now());
         return entity;
     }
 
