@@ -10,9 +10,19 @@ import java.time.LocalDateTime;
 public class RegionDTO {
     private Integer id;
     private Integer orderNum;
+    private String name;
     private String nameUz;
     private String nameRu;
     private String nameEn;
     private Boolean visible;
     private LocalDateTime createdDate;
+
+    public RegionDTO() {
+    }
+
+    public RegionDTO(Integer id, Integer orderNumber, String name) {
+        this.id = id;
+        this.orderNum = orderNumber;
+        this.name = name;
+    }
 }

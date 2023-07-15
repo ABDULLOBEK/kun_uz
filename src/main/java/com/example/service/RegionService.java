@@ -4,6 +4,7 @@ import com.example.dto.ProfileDTO;
 import com.example.dto.RegionDTO;
 import com.example.entity.ProfileEntity;
 import com.example.entity.RegionEntity;
+import com.example.enums.Language;
 import com.example.repository.RegionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,18 +44,18 @@ public class RegionService {
         return dtoList;
     }
 
-    public List<RegionDTO> getByLang(String language){
-        if(language.equals("en")){
-            return  getRegionDTOS(regionRepository.getNameEn());
-        }
-        if(language.equals("uz")){
-            return  getRegionDTOS(regionRepository.getNameUZ());
-        }
-        if(language.equals("ru")){
-            return  getRegionDTOS(regionRepository.getNameRu());
-        }
-        return null;
+    public List<RegionDTO> getByLang(Language lang) {
+        List<RegionDTO> dtoList = new LinkedList<>();
+        regionRepository.findAllByLang(lang.name()).forEach(mapper -> {
+            RegionDTO dto = new RegionDTO();
+            dto.setId(mapper.getId());
+            dto.setOrderNum(mapper.getOrderNumber());
+            dto.setName(mapper.getName());
+            dtoList.add(dto);
+        });
+        return dtoList;
     }
+
 
     private List<RegionDTO> getRegionDTOS(List<RegionEntity> entityList) {
         List<RegionDTO> dtoList = new LinkedList<>();
@@ -85,8 +86,6 @@ public class RegionService {
         entity.setNameUz(dto.getNameUz());
         entity.setNameEn(dto.getNameEn());
         entity.setNameRu(dto.getNameRu());
-        entity.setVisible(dto.getVisible());
-        entity.setCreatedDate(LocalDateTime.now());
         return entity;
     }
 }
