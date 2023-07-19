@@ -16,6 +16,7 @@ public class CategoryDTO {
     private String nameEn;
     private String nameRu;
     private Boolean visible;
+    private String jwt;
     private LocalDateTime createdDate;
 
     public CategoryDTO() {

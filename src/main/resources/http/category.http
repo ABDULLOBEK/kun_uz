@@ -1,6 +1,8 @@
 ### Create student
-POST localhost:8080/category/create
+POST localhost:8080/api/v1/category/create
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODk2ODUzOTUsImlkIjozLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODk2ODg5OTUsImlzcyI6Imt1bnV6IHRlc3QgcG9ydGFsaSJ9.j_0gDCatyRXwzAWVnPEykANpmt0v7jbs8HUYSuIGqPQb4G7c98-roorW-ZlDl93AUp0APwJHh2YM80xPqzz5Eg
+
 
 {
   "orderNum": 1,
@@ -11,8 +13,10 @@ Content-Type: application/json
 
 
 ### Update by id
-PUT localhost:8080/category/1
+PUT localhost:8080/api/v1/category/1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODk2ODUzOTUsImlkIjozLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODk2ODg5OTUsImlzcyI6Imt1bnV6IHRlc3QgcG9ydGFsaSJ9.j_0gDCatyRXwzAWVnPEykANpmt0v7jbs8HUYSuIGqPQb4G7c98-roorW-ZlDl93AUp0APwJHh2YM80xPqzz5Eg
+
 
 {
   "orderNum": 1,
@@ -23,5 +27,7 @@ Content-Type: application/json
 
 
 ### Get all
-GET localhost:8080/category/all
+GET localhost:8080/api/v1/category/all
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODk2ODUzOTUsImlkIjozLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODk2ODg5OTUsImlzcyI6Imt1bnV6IHRlc3QgcG9ydGFsaSJ9.j_0gDCatyRXwzAWVnPEykANpmt0v7jbs8HUYSuIGqPQb4G7c98-roorW-ZlDl93AUp0APwJHh2YM80xPqzz5Eg
+
 

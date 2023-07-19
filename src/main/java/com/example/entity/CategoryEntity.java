@@ -33,4 +33,7 @@ public class CategoryEntity {
 
     @Column(name = "crated_date")
     private LocalDateTime createdDate=LocalDateTime.now();
+
+    @Column(name = "prt_id")
+    private Integer prtId;
 }

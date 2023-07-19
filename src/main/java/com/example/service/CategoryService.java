@@ -1,15 +1,12 @@
 package com.example.service;
 
 import com.example.dto.CategoryDTO;
-import com.example.dto.RegionDTO;
 import com.example.entity.CategoryEntity;
-import com.example.entity.RegionEntity;
 import com.example.enums.Language;
 import com.example.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,15 +14,16 @@ import java.util.List;
 public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
-    public CategoryDTO add(CategoryDTO dto) {
+    public CategoryDTO add(CategoryDTO dto, Integer id) {
         CategoryEntity entity = toEntity(dto);
+        entity.setPrtId(id);
         categoryRepository.save(entity);
         dto.setId(entity.getId());
         return dto;
     }
 
-    public Boolean update(Integer id, CategoryDTO region){
-        int affectedRows = categoryRepository.update(id, region.getOrderNum(),region.getNameUz(), region.getNameEn(), region.getNameRu());
+    public Boolean update(Integer id, CategoryDTO region, Integer jwtDTOId){
+        int affectedRows = categoryRepository.update(id, region.getOrderNum(),region.getNameUz(), region.getNameEn(), region.getNameRu(), jwtDTOId);
         return affectedRows==1;
     }
 
