@@ -18,8 +18,8 @@ public interface RegionRepository extends CrudRepository<RegionEntity, Integer>,
 
     @Transactional
     @Modifying
-    @Query("update RegionEntity  as r set r.orderNum=:order_num, r.nameUz=:name_uz, r.nameEn=:name_en, r.nameRu=:name_ru where r.id=:id")
-    int update(@Param("id") Integer id,@Param("order_num") Integer orderNum,@Param("name_uz") String nameUz,@Param("name_en") String nameEn,@Param("name_ru") String nameRu);
+    @Query("update RegionEntity  as r set r.orderNum=:order_num, r.nameUz=:name_uz, r.nameEn=:name_en, r.nameRu=:name_ru, r.prtId=:prId where r.id=:id")
+    int update(@Param("id") Integer id,@Param("order_num") Integer orderNum,@Param("name_uz") String nameUz,@Param("name_en") String nameEn,@Param("name_ru") String nameRu, @Param("prId") Integer prId);
 
     @Query(value = "select id, order_num, " +
             "CASE :lang " +
