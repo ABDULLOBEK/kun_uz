@@ -27,8 +27,9 @@ public class ProfileService {
     @Autowired
     private CustomProfileRepository customRepository;
 
-    public ProfileDTO create(ProfileDTO dto){
+    public ProfileDTO create(ProfileDTO dto, Integer prtId){
         isValidProfile(dto);
+
         Optional<ProfileEntity> profileByEmail = profileRepository.findByEmail(dto.getEmail());
         if (profileByEmail.isPresent()) {
             throw new AppBadRequestException("Email already exists");
@@ -39,19 +40,21 @@ public class ProfileService {
         }
 
         ProfileEntity profile = toEntity(dto);
+        profile.setPrtId(prtId);
         profileRepository.save(profile);
         dto.setId(profile.getId());
         dto.setCreatedDate(profile.getCreatedDate());
         return dto;
     }
 
-    public Boolean update(Integer id, ProfileDTO dto){
+    public Boolean update(Integer id, ProfileDTO dto, Integer prtId){
         isValidProfile(dto); // check
         ProfileEntity entity = get(id); // get
         entity.setName(dto.getName());
         entity.setSurname(dto.getSurname());
         entity.setEmail(dto.getEmail());
         entity.setPhone(dto.getPhone());
+        entity.setPrtId(prtId);
         profileRepository.save(entity);
         return true;
     }
@@ -117,4 +120,6 @@ public class ProfileService {
         // ....
         // phone ..
     }
+
+
 }
