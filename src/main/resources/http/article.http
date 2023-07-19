@@ -1,0 +1,34 @@
+### Create student
+POST localhost:8080/api/v1/articleType/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODk2ODUzOTUsImlkIjozLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODk2ODg5OTUsImlzcyI6Imt1bnV6IHRlc3QgcG9ydGFsaSJ9.j_0gDCatyRXwzAWVnPEykANpmt0v7jbs8HUYSuIGqPQb4G7c98-roorW-ZlDl93AUp0APwJHh2YM80xPqzz5Eg
+
+
+{
+  "orderNum": 2,
+  "nameUz": "Samarqand",
+  "nameRu": "Самарканд",
+  "nameEn": "Samarqand"
+}
+
+
+### Update by id
+PUT localhost:8080/api/v1/articleType/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODk2ODUzOTUsImlkIjozLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODk2ODg5OTUsImlzcyI6Imt1bnV6IHRlc3QgcG9ydGFsaSJ9.j_0gDCatyRXwzAWVnPEykANpmt0v7jbs8HUYSuIGqPQb4G7c98-roorW-ZlDl93AUp0APwJHh2YM80xPqzz5Eg
+
+{
+  "orderNum": 1,
+  "nameUz": "Toshkent",
+  "nameRu": "Ташкент",
+  "nameEn": "Tashkent"
+}
+
+
+### Create pofile
+GET localhost:8080/api/v1/articleType/lang?lang=uz
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODk2ODUzOTUsImlkIjozLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODk2ODg5OTUsImlzcyI6Imt1bnV6IHRlc3QgcG9ydGFsaSJ9.j_0gDCatyRXwzAWVnPEykANpmt0v7jbs8HUYSuIGqPQb4G7c98-roorW-ZlDl93AUp0APwJHh2YM80xPqzz5Eg
+
+### Get all
+GET localhost:8080/api/v1/articleType/all
+

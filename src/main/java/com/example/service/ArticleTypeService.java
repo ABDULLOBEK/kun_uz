@@ -1,12 +1,9 @@
 package com.example.service;
 
 import com.example.dto.ArticleTypeDTO;
-import com.example.dto.RegionDTO;
 import com.example.entity.ArticleTypeEntity;
-import com.example.entity.RegionEntity;
 import com.example.enums.Language;
 import com.example.repository.ArticleTypeRepository;
-import com.example.repository.RegionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,15 +15,16 @@ public class ArticleTypeService {
     @Autowired
     private ArticleTypeRepository articleTypeRepository;
 
-    public ArticleTypeDTO add(ArticleTypeDTO dto) {
+    public ArticleTypeDTO add(ArticleTypeDTO dto, Integer id) {
         ArticleTypeEntity entity = toEntity(dto);
+        entity.setPrtId(id);
         articleTypeRepository.save(entity);
         dto.setId(entity.getId());
         return dto;
     }
 
-    public Boolean update(Integer id, ArticleTypeDTO region){
-        int affectedRows = articleTypeRepository.update(id, region.getOrderNum(),region.getNameUz(), region.getNameEn(), region.getNameRu());
+    public Boolean update(Integer id, ArticleTypeDTO region, Integer jwtDTOId){
+        int affectedRows = articleTypeRepository.update(id, region.getOrderNum(),region.getNameUz(), region.getNameEn(), region.getNameRu(),jwtDTOId);
         return affectedRows==1;
     }
 
