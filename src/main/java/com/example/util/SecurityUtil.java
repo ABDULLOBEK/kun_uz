@@ -6,6 +6,7 @@ import com.example.exp.AppMethodNotAllowedException;
 import com.example.exp.UnAuthorizedException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import jakarta.servlet.http.HttpServletRequest;
 
 import javax.xml.crypto.Data;
 import java.time.LocalDateTime;
@@ -23,9 +24,37 @@ public class SecurityUtil {
         throw new UnAuthorizedException("Not authorized");
     }
 
-    public static JwtDTO hasRole(String authToken, ProfileRole requiredRole) {
+    public static JwtDTO hasRole(HttpServletRequest request, ProfileRole... requiredRoles) {
+        Integer id = (Integer) request.getAttribute("id");
+        ProfileRole role = (ProfileRole) request.getAttribute("role");
+        if (requiredRoles == null) {
+            return new JwtDTO(id, role);
+        }
+        boolean found = false;
+        for (ProfileRole required : requiredRoles) {
+            if (role.equals(required)) {
+                found = true;
+            }
+        }
+        if (!found) {
+            throw new AppMethodNotAllowedException();
+        }
+        return new JwtDTO(id, role);
+    }
+
+    public static JwtDTO hasRole(String authToken, ProfileRole... requiredRoles) {
         JwtDTO jwtDTO = getJwtDTO(authToken);
-        if (!jwtDTO.getRole().equals(requiredRole)) {
+        if(requiredRoles == null){
+            return jwtDTO;
+        }
+        boolean found = false;
+
+        for (ProfileRole role : requiredRoles) {
+            if (jwtDTO.getRole().equals(role)) {
+                found = true;
+            }
+        }
+        if (!found) {
             throw new AppMethodNotAllowedException();
         }
         return jwtDTO;

@@ -1,0 +1,19 @@
+POST http://localhost:8080/api/v1/attach/upload
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="tabel.jpg"
+
+< C:\Users\RT\Desktop\tabel.jpg
+
+### get image
+GET http://localhost:8080/api/v1/attach/open/tabel.jpg
+
+### get image by id
+GET http://localhost:8080/api/v1/attach/open/4d03b311-4503-4520-8fea-01e944b67a29/img
+
+### get image by id general
+GET http://localhost:8080/api/v1/attach/open/4d03b311-4503-4520-8fea-01e944b67a29/general
+
+### delete
+DELETE http://localhost:8080/api/v1/attach/delete/d3805ac2-3048-4d4f-b829-6fb24b9cfc37

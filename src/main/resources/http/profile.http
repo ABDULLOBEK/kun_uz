@@ -1,13 +1,13 @@
 ### Create student
-POST localhost:8080//api/v1/profile/create
+POST localhost:8080//api/v1/profile
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODk2ODUzOTUsImlkIjozLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODk2ODg5OTUsImlzcyI6Imt1bnV6IHRlc3QgcG9ydGFsaSJ9.j_0gDCatyRXwzAWVnPEykANpmt0v7jbs8HUYSuIGqPQb4G7c98-roorW-ZlDl93AUp0APwJHh2YM80xPqzz5Eg
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODk4NjcwODQsImlkIjozLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODk4NzA2ODQsImlzcyI6Imt1bnV6IHRlc3QgcG9ydGFsaSJ9.tNh3AKfBkmBPtxM3EzlzIFQ9DLJbDRgaj-sm9EXWUE2Bo2sCCZWTGGUJHIjY3nRDBgkPLXFHFkRGfJaLkVfPLQ
 
 {
-  "name": "aLI",
-  "surname": "aLIYEV",
-  "email": "limov@gmail.com",
-  "phone": "45",
+  "name": "alijon",
+  "surname": "alijonov",
+  "email": "alijon@gmail.com",
+  "phone": "1212",
   "password": "1234",
   "role": "USER"
 }
@@ -17,35 +17,19 @@ PUT localhost:8080/profile/simple/1
 Content-Type: application/json
 
 {
-  "name": "Abdu",
-  "surname": "Alimov"
+  "name": "aLI",
+  "surname": "aLIYEV"
 }
 
 ### Update by id
-PUT localhost:8080/api/v1/profile/2
+GET localhost:8080/api/v1/profile/detail
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODk2MTc4NzUsImlkIjoyLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODk2MjE0NzUsImlzcyI6Imt1bnV6IHRlc3QgcG9ydGFsaSJ9.-CkDWmjz8aT-gaTrWhpmvlsmhTCwuyapPSfLCq03uVcTUHRFTmfKiRr3I2VZwYBoadE5qeselA_NoW-ZcsyBiw
 
 {
   "name": "Ali",
-  "surname": "Aliyev",
-  "email": "sobachka@.ru",
-  "phone": "+990997307535",
-  "password": "qwerty",
-  "status": "BLOCKED",
-  "role": "MODERATOR"
+  "surname": "Aliyev"
 }
 
-### Get by pages
-GET localhost:8080/profile/pagination/all?page=1&size=10
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODk2ODUzOTUsImlkIjozLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODk2ODg5OTUsImlzcyI6Imt1bnV6IHRlc3QgcG9ydGFsaSJ9.j_0gDCatyRXwzAWVnPEykANpmt0v7jbs8HUYSuIGqPQb4G7c98-roorW-ZlDl93AUp0APwJHh2YM80xPqzz5Eg
 
-
-### Filter
-POST localhost:8080/profile/filter
-Content-Type: application/json
-
-{
-  "name": "Ali"
-}
 

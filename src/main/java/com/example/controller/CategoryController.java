@@ -7,6 +7,7 @@ import com.example.enums.Language;
 import com.example.enums.ProfileRole;
 import com.example.service.CategoryService;
 import com.example.util.SecurityUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +23,8 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @PostMapping("")
-    public ResponseEntity<?> create(@RequestBody CategoryDTO category, @RequestHeader("Authorization") String authToken){
-        JwtDTO jwtDTO = SecurityUtil.hasRole(authToken, ProfileRole.ADMIN);
+    public ResponseEntity<?> create(@RequestBody CategoryDTO category, HttpServletRequest request){
+        JwtDTO jwtDTO = SecurityUtil.hasRole(request, ProfileRole.ADMIN);
         CategoryDTO response = categoryService.add(category,jwtDTO.getId());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -31,15 +32,15 @@ public class CategoryController {
     @PutMapping("/{id}")
     public ResponseEntity<?> put(@RequestBody CategoryDTO category,
                                  @PathVariable("id") Integer id,
-                                 @RequestHeader("Authorization") String authToken){
-        JwtDTO jwtDTO = SecurityUtil.hasRole(authToken, ProfileRole.ADMIN);
+                                 HttpServletRequest request){
+        JwtDTO jwtDTO = SecurityUtil.hasRole(request, ProfileRole.ADMIN);
         categoryService.update(id, category,jwtDTO.getId());
         return ResponseEntity.ok(true);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable("id") Integer id,@RequestHeader("Authorization") String authToken){
-        JwtDTO jwtDTO = SecurityUtil.hasRole(authToken, ProfileRole.ADMIN);
+    public ResponseEntity<?> delete(@PathVariable("id") Integer id, HttpServletRequest request){
+        JwtDTO jwtDTO = SecurityUtil.hasRole(request, ProfileRole.ADMIN);
         String  response = categoryService.delete(id);
         if(response.length()>0){
             return ResponseEntity.ok("Student Deleted");
@@ -53,8 +54,8 @@ public class CategoryController {
     }
 
     @GetMapping("/lang")
-    public ResponseEntity<?> getByLang(@RequestParam("lang") Language lang,@RequestHeader("Authorization") String authToken){
-        JwtDTO jwtDTO = SecurityUtil.hasRole(authToken, ProfileRole.ADMIN);
+    public ResponseEntity<?> getByLang(@RequestParam("lang") Language lang, HttpServletRequest request){
+        JwtDTO jwtDTO = SecurityUtil.hasRole(request, ProfileRole.ADMIN);
         return ResponseEntity.ok(categoryService.getByLang(lang));
     }
 }
