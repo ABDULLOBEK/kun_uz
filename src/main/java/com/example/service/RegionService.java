@@ -3,6 +3,7 @@ package com.example.service;
 import com.example.dto.RegionDTO;
 import com.example.entity.RegionEntity;
 import com.example.enums.Language;
+import com.example.exp.AppBadRequestException;
 import com.example.repository.RegionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -85,5 +86,14 @@ public class RegionService {
         entity.setNameEn(dto.getNameEn());
         entity.setNameRu(dto.getNameRu());
         return entity;
+    }
+    public RegionDTO getById(Integer id, Language language) {
+        return toDTO(get(id));
+    }
+
+    public RegionEntity get(Integer id) {
+        return regionRepository.findById(id).orElseThrow(() -> {
+            throw new AppBadRequestException("Region not found");
+        });
     }
 }

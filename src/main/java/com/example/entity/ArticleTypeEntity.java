@@ -10,10 +10,7 @@ import java.time.LocalDateTime;
 @Table(name = "article_type")
 @Getter
 @Setter
-public class ArticleTypeEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+public class ArticleTypeEntity extends BaseEntity{
 
     @Column(name = "order_num")
     private Integer orderNum;
@@ -26,12 +23,6 @@ public class ArticleTypeEntity {
 
     @Column(name = "name_en")
     private String nameEn;
-
-    @Column(name = "visible")
-    private Boolean visible=Boolean.TRUE;
-
-    @Column(name = "created_date")
-    private LocalDateTime createdDate=LocalDateTime.now();
 
     @Column(name = "prt_id")
     private Integer prtId;
