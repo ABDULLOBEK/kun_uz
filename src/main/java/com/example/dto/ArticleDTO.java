@@ -1,5 +1,6 @@
 package com.example.dto;
 
+import com.example.enums.ArticleStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,7 +20,10 @@ public class ArticleDTO {
     private Integer categoryId;
     private List<Integer> articleType;
     private Integer regionId;
+    private ArticleStatus status;
 
     private RegionDTO region;
     private LocalDateTime createdDate;
+    private AttachDTO image;
+
 }

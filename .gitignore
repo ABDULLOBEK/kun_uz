@@ -33,3 +33,4 @@ build/
 .vscode/
 /src/main/resources/talablar (6).txt
 /attaches/
+/src/main/resources/application-local.properties

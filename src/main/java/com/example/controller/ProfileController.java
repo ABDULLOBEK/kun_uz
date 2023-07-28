@@ -27,7 +27,7 @@ public class ProfileController {
         return ResponseEntity.ok(profileService.create(dto, jwtDTO.getId()));
     }
 
-    @PutMapping("//{id}")
+    @PutMapping(value = "/{id}")
     public ResponseEntity<?> update(@RequestBody ProfileDTO profile,
                                     @PathVariable("id") Integer id,
                                     HttpServletRequest request){
@@ -35,14 +35,14 @@ public class ProfileController {
         return ResponseEntity.ok(profileService.update(id, profile, jwtDTO.getId()));
     }
 
-    @PutMapping(value = "/detail")
+    @PutMapping(value = "/detail/{id}")
     public ResponseEntity<Boolean> updateDetail(@RequestBody ProfileDTO dto,
                                                 HttpServletRequest request) {
         JwtDTO jwtDTO = SecurityUtil.hasRole(request, null);
         return ResponseEntity.ok(profileService.updateSimple(jwtDTO.getId(), dto));
     }
 
-    @GetMapping(value = "")
+    @GetMapping(value = "/get")
     public ResponseEntity<List<ProfileDTO>> getAll( HttpServletRequest request) {
         JwtDTO jwtDTO = SecurityUtil.hasRole(request, ProfileRole.ADMIN);
         return ResponseEntity.ok(profileService.getAll());

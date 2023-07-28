@@ -11,6 +11,7 @@ import lombok.Setter;
 public class ArticleTypesEntity extends BaseEntity {
     @Column(name = "article_id", nullable = false)
     private String articleId;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "article_id", insertable = false, updatable = false)
     private ArticleEntity article;

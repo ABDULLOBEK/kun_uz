@@ -5,6 +5,10 @@ import com.example.entity.AttachEntity;
 import com.example.exp.AppBadRequestException;
 import com.example.repository.AttachRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -16,6 +20,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -24,7 +29,12 @@ import java.util.UUID;
 
 @Service
 public class AttachService {
-    private final String folderName = "attaches";
+    @Value("${attach.folder.name}")
+    private String folderName;
+
+    @Value("{attach.url}")
+    private String attachUrl;
+
     @Autowired
     AttachRepository attachRepository;
 
@@ -74,7 +84,7 @@ public class AttachService {
             attachDTO.setId(key);
             attachDTO.setOriginalName(entity.getOriginalName());
             // any think you want mazgi.
-            attachDTO.setUrl("");
+            attachDTO.setUrl(getUrl(entity.getId()));
 
             return attachDTO;
         } catch (IOException e) {
@@ -83,7 +93,7 @@ public class AttachService {
         }
     }
 
-        public byte[] loadImage(String fileName) {
+    public byte[] loadImage(String fileName) { // open image
             try {
                 BufferedImage originalImage = ImageIO.read(new File("attaches/" + fileName));
 
@@ -98,22 +108,6 @@ public class AttachService {
                 return new byte[0];
             }
         }
-
-    public byte[] loadImageById(String id) {
-        AttachEntity entity = get(id);
-        try {
-            String url = folderName + "/" + entity.getPath() + "/" + id + "." + entity.getExtension();
-            BufferedImage originalImage = ImageIO.read(new File(url));
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ImageIO.write(originalImage, entity.getExtension(), baos);
-            baos.flush();
-            byte[] imageInByte = baos.toByteArray();
-            baos.close();
-            return imageInByte;
-        } catch (Exception e) {
-            return new byte[0];
-        }
-    }
 
     public byte[] loadByIdGeneral(String id) {
         AttachEntity entity = get(id);
@@ -133,13 +127,27 @@ public class AttachService {
         }
     }
 
+    public byte[] loadImageById(String id) {
+        AttachEntity entity = get(id);
+        try {
+            String url = folderName + "/" + entity.getPath() + "/" + id + "." + entity.getExtension();
+            BufferedImage originalImage = ImageIO.read(new File(url));
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(originalImage, entity.getExtension(), baos);
+            baos.flush();
+            byte[] imageInByte = baos.toByteArray();
+            baos.close();
+            return imageInByte;
+        } catch (Exception e) {
+            return new byte[0];
+        }
+    }
+
     public ResponseEntity<?> delete(String id) {
         AttachEntity entity = get(id);
-
         try {
             String url = folderName + "/" + entity.getPath() + "/" + id + "." + entity.getExtension();
             File file = new File(url);
-
             // Check if the file exists before attempting to delete it
             if (file.exists()) {
                 if (file.delete()) {
@@ -163,6 +171,41 @@ public class AttachService {
         }
     }
 
+    public ResponseEntity<Resource> download(String id) {
+        AttachEntity entity = get(id);
+        try {
+            String url = folderName + "/" + entity.getPath() + "/" + id + "." + entity.getExtension();
+
+            Path file = Paths.get(url);
+            Resource resource = new UrlResource(file.toUri());
+
+            if (resource.exists() || resource.isReadable()) {
+                return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
+                        "attachment; filename=\"" + entity.getOriginalName() + "\"").body(resource);
+            } else {
+                throw new RuntimeException("Could not read the file!");
+            }
+        } catch (MalformedURLException e) {
+            throw new RuntimeException("Error: " + e.getMessage());
+        }
+    }
+
+
+
+
+    public AttachDTO getAttachWithUrl(String id) {
+        if (id == null) {
+            return null;
+        }
+        AttachDTO dto = new AttachDTO();
+        dto.setId(id);
+        dto.setUrl(getUrl(id));
+        return dto;
+    }
+
+    public String getUrl(String id) {
+        return attachUrl + "/open/" + id + "/img";
+    }
 
     public AttachEntity get(String id) {
         return attachRepository.findById(id).orElseThrow(() -> {
@@ -182,5 +225,6 @@ public class AttachService {
         int lastIndex = fileName.lastIndexOf(".");
         return fileName.substring(lastIndex + 1);
     }
+
 }
 

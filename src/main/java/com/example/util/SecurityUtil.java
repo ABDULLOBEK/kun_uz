@@ -4,16 +4,7 @@ import com.example.dto.JwtDTO;
 import com.example.enums.ProfileRole;
 import com.example.exp.AppMethodNotAllowedException;
 import com.example.exp.UnAuthorizedException;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
 import jakarta.servlet.http.HttpServletRequest;
-
-import javax.xml.crypto.Data;
-import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.function.Function;
-
-import static javax.crypto.Cipher.SECRET_KEY;
 
 public class SecurityUtil {
     public static JwtDTO getJwtDTO(String authToken) {

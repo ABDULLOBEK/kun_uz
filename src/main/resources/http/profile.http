@@ -1,7 +1,7 @@
 ### Create student
 POST localhost:8080//api/v1/profile
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODk4NjcwODQsImlkIjozLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODk4NzA2ODQsImlzcyI6Imt1bnV6IHRlc3QgcG9ydGFsaSJ9.tNh3AKfBkmBPtxM3EzlzIFQ9DLJbDRgaj-sm9EXWUE2Bo2sCCZWTGGUJHIjY3nRDBgkPLXFHFkRGfJaLkVfPLQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2OTA0NTExNjYsImlkIjozLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2OTA0NTQ3NjYsImlzcyI6Imt1bnV6IHRlc3QgcG9ydGFsaSJ9.plGv7aM4vFz-OlyojjTChF73v7WzdqjmToHROw5Ynau0phAUTijYqasKPokqjwjGLQ-z53cc7fmC-FVU1Av8XQ
 
 {
   "name": "alijon",
@@ -9,27 +9,22 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODk4NjcwODQsImlkIjozLCJyb
   "email": "alijon@gmail.com",
   "phone": "1212",
   "password": "1234",
-  "role": "USER"
+  "role": "MODERATOR"
 }
 
 ### Update by id
-PUT localhost:8080/profile/simple/1
+PUT localhost:8080/api/v1/profile/7
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2OTA0Mzg1NzMsImlkIjozLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2OTA0NDIxNzMsImlzcyI6Imt1bnV6IHRlc3QgcG9ydGFsaSJ9.E2pDgVHld3N1_-3OkWBcxD3nUwvfmKDygpUPxNkMUoWUJv8sfx7ZpLtYNrWPFQ11HcFt-070aPaXyvj9LJeG9A
 
 {
   "name": "aLI",
   "surname": "aLIYEV"
 }
 
-### Update by id
-GET localhost:8080/api/v1/profile/detail
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODk2MTc4NzUsImlkIjoyLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODk2MjE0NzUsImlzcyI6Imt1bnV6IHRlc3QgcG9ydGFsaSJ9.-CkDWmjz8aT-gaTrWhpmvlsmhTCwuyapPSfLCq03uVcTUHRFTmfKiRr3I2VZwYBoadE5qeselA_NoW-ZcsyBiw
-
-{
-  "name": "Ali",
-  "surname": "Aliyev"
-}
+###Get
+GET localhost:8080/api/v1/profile/get
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2OTA0Mzg1NzMsImlkIjozLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2OTA0NDIxNzMsImlzcyI6Imt1bnV6IHRlc3QgcG9ydGFsaSJ9.E2pDgVHld3N1_-3OkWBcxD3nUwvfmKDygpUPxNkMUoWUJv8sfx7ZpLtYNrWPFQ11HcFt-070aPaXyvj9LJeG9A
 
 
 

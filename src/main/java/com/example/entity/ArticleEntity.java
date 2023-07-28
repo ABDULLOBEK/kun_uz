@@ -16,10 +16,13 @@ import java.util.Set;
 public class ArticleEntity extends BaseStringEntity {
     @Column(nullable = false, unique = true)
     private String title;
+
     @Column(nullable = false, columnDefinition = "text")
     private String description;
+
     @Column(nullable = false, columnDefinition = "text")
     private String content;
+
     @Column(name = "shared_count")
     private Integer sharedCount = 0;
 
@@ -64,5 +67,5 @@ public class ArticleEntity extends BaseStringEntity {
     private LocalDateTime publishedDate;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "article")
-    private Set<ArticleTypeEntity> articleTypeSet;
+    private Set<ArticleTypesEntity> articleTypeSet;
 }

@@ -1,11 +1,11 @@
 ### Create student
-POST localhost:8080/api/v1/category
+POST localhost:8080/api/v1/articleType
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2OTA0Mzg1NzMsImlkIjozLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2OTA0NDIxNzMsImlzcyI6Imt1bnV6IHRlc3QgcG9ydGFsaSJ9.E2pDgVHld3N1_-3OkWBcxD3nUwvfmKDygpUPxNkMUoWUJv8sfx7ZpLtYNrWPFQ11HcFt-070aPaXyvj9LJeG9A
 
 
 {
-  "orderNum": 1,
+  "orderNum": 2,
   "nameUz": "Samarqand",
   "nameRu": "Самарканд",
   "nameEn": "Samarqand"
@@ -13,10 +13,9 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2OTA0Mzg1NzMsImlkIjozLCJyb
 
 
 ### Update by id
-PUT localhost:8080/api/v1/category/1
+PUT localhost:8080/api/v1/articleType/1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2OTA0Mzg1NzMsImlkIjozLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2OTA0NDIxNzMsImlzcyI6Imt1bnV6IHRlc3QgcG9ydGFsaSJ9.E2pDgVHld3N1_-3OkWBcxD3nUwvfmKDygpUPxNkMUoWUJv8sfx7ZpLtYNrWPFQ11HcFt-070aPaXyvj9LJeG9A
-
 
 {
   "orderNum": 1,
@@ -26,8 +25,11 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2OTA0Mzg1NzMsImlkIjozLCJyb
 }
 
 
-### Get all
-GET localhost:8080/api/v1/category/all
+### Create pofile
+GET localhost:8080/api/v1/articleType/lang?lang=uz
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2OTA0Mzg1NzMsImlkIjozLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2OTA0NDIxNzMsImlzcyI6Imt1bnV6IHRlc3QgcG9ydGFsaSJ9.E2pDgVHld3N1_-3OkWBcxD3nUwvfmKDygpUPxNkMUoWUJv8sfx7ZpLtYNrWPFQ11HcFt-070aPaXyvj9LJeG9A
+
+### Get all
+GET localhost:8080/api/v1/articleType/all
 
 

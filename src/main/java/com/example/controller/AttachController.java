@@ -3,6 +3,7 @@ package com.example.controller;
 import com.example.dto.AttachDTO;
 import com.example.service.AttachService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,20 +22,25 @@ public class AttachController {
         return ResponseEntity.ok(fileName);
     }
 
+
     @GetMapping(value = "/open/{fileName}", produces = MediaType.IMAGE_PNG_VALUE)
     public byte[] open(@PathVariable("fileName") String fileName) {
+
         return this.attachService.loadImage(fileName);
     }
+
 
     @GetMapping(value = "/open/{id}/img", produces = MediaType.IMAGE_PNG_VALUE)
     public byte[] openImageById(@PathVariable("id") String id) {
         return attachService.loadImageById(id);
     }
 
+
     @GetMapping(value = "/open/{id}/general", produces = MediaType.ALL_VALUE)
     public byte[] openByIdGeneral(@PathVariable("id") String id) {
         return attachService.loadByIdGeneral(id);
     }
+
 
     @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") String id){
@@ -47,6 +53,12 @@ public class AttachController {
         } else {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to delete the image with ID " + id + ".");
         }
+    }
+
+
+    @GetMapping("/download/{id}")
+    public ResponseEntity<Resource> download(@PathVariable("id") String id) {
+        return attachService.download(id);
     }
 }
 
