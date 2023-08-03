@@ -4,6 +4,7 @@ import com.example.dto.ApiResponseDTO;
 import com.example.dto.AuthDTO;
 import com.example.dto.RegistrationDTO;
 import com.example.service.AuthService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class AuthController {
     }
 
     @PostMapping(value = {"/registration"})
-    public ResponseEntity<ApiResponseDTO> registration(@RequestBody RegistrationDTO dto) {
+    public ResponseEntity<ApiResponseDTO> registration(@Valid @RequestBody RegistrationDTO dto) {
         return ResponseEntity.ok(authService.registration(dto));
     }
 

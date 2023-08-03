@@ -21,13 +21,13 @@ public class ProfileController {
     @Autowired
     private ProfileService profileService;
 
-    @PostMapping(value = {"", "/"})
+    @PostMapping(value =  "/admin")
     public ResponseEntity<?> create(@RequestBody ProfileDTO dto, HttpServletRequest request) {
         JwtDTO jwtDTO = SecurityUtil.hasRole(request, ProfileRole.ADMIN, ProfileRole.MODERATOR);
         return ResponseEntity.ok(profileService.create(dto, jwtDTO.getId()));
     }
 
-    @PutMapping(value = "/{id}")
+    @PutMapping(value = "/admin/{id}")
     public ResponseEntity<?> update(@RequestBody ProfileDTO profile,
                                     @PathVariable("id") Integer id,
                                     HttpServletRequest request){
@@ -42,13 +42,13 @@ public class ProfileController {
         return ResponseEntity.ok(profileService.updateSimple(jwtDTO.getId(), dto));
     }
 
-    @GetMapping(value = "/get")
+    @GetMapping(value = "/admin/get")
     public ResponseEntity<List<ProfileDTO>> getAll( HttpServletRequest request) {
         JwtDTO jwtDTO = SecurityUtil.hasRole(request, ProfileRole.ADMIN);
         return ResponseEntity.ok(profileService.getAll());
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/admin/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable("id") Integer id,
                                           HttpServletRequest request){
         JwtDTO jwtDTO = SecurityUtil.hasRole(request, ProfileRole.ADMIN);

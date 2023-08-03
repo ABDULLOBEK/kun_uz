@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.GenericFilterBean;
 
 import java.io.IOException;
-@Component
+//@Component
 public class JWTFilter extends GenericFilterBean {
     //    public static final Map<String, String> openURL = new HashMap<>();
 //    {

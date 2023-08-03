@@ -24,6 +24,8 @@ public class AuthService {
     private MailSenderService mailSenderService;
     @Autowired
     private EmailHistoryRepository emailHistoryRepository;
+    @Autowired
+    private SmsSenderService smsSenderService;
 
 
     public ApiResponseDTO login(AuthDTO dto) {
@@ -64,10 +66,12 @@ public class AuthService {
         entity.setName(dto.getName());
         entity.setSurname(dto.getSurname());
         entity.setEmail(dto.getEmail());
+//        entity.setPhone(dto.getPhone());
         entity.setPassword(MD5Util.encode(dto.getPassword()));
         entity.setRole(ProfileRole.USER);
         entity.setStatus(ProfileStatus.REGISTRATION);
         profileRepository.save(entity);
+//        smsSenderService.sendRegistrationSms(dto.getPhone());
         String message =  mailSenderService.sendEmailVerification(dto.getEmail(),entity.getName(), entity.getId());// send registration verification link
         EmailHistoryEntity historyEntity = new EmailHistoryEntity();
         historyEntity.setEmail(dto.getEmail());

@@ -6,10 +6,14 @@ import com.example.enums.Language;
 import com.example.enums.ProfileRole;
 import com.example.service.RegionService;
 import com.example.util.SecurityUtil;
+import com.example.util.SpringSecurityUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,9 +25,8 @@ public class RegionController {
     private RegionService regionService;
 
     @PostMapping("/admin/create")
-    public ResponseEntity<?> create(@RequestBody RegionDTO region,  HttpServletRequest request){
-        JwtDTO jwtDTO = SecurityUtil.hasRole(request, ProfileRole.ADMIN);
-        RegionDTO response = regionService.add(region,jwtDTO.getId());
+    public ResponseEntity<?> create(@RequestBody RegionDTO region){
+        RegionDTO response = regionService.add(region);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -48,12 +51,16 @@ public class RegionController {
 
     @GetMapping("/admin/all")
     public List<RegionDTO> all(){
+//        String username = principal.getName();
+//        String username = SpringSecurityUtil.getCurrentUsername();
+//        UserDetails userDetails = SpringSecurityUtil.getCurrentUser();
+        //TODO get current username Spring security util 43
         return regionService.getAll();
     }
 
     @GetMapping("/lang")
     public ResponseEntity<?> getByLang(@RequestParam("lang") Language lang,  HttpServletRequest request){
-
+//        UserDetails username = SpringSecurityUtil.getCurrentUser();
         return ResponseEntity.ok(regionService.getByLang(lang));
     }
 }

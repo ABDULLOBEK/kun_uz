@@ -1,7 +1,7 @@
 ### Create Article
 POST localhost:8080/api/v1/article
 Content-Type:  application/json
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2OTA1NTI0ODksImlkIjo4LCJyb2xlIjoiTU9ERVJBVE9SIiwiZXhwIjoxNjkwNTU2MDg5LCJpc3MiOiJrdW51eiB0ZXN0IHBvcnRhbGkifQ.oMw0jYwgwyyxkGtgAucfABVPQHfWiaJy2cmmX3eRsKYpkgv86QH3-D3Am0NJSnZrXBC4DmmItKw_cCigTRbwAQ
+Authorization: Basic YWRtaW46MTIzNDU=
 
 {
   "title": "Valish",
@@ -17,7 +17,7 @@ Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2OTA1NTI0ODksImlkIjo4LCJyb2xlIjoi
 ### Update Article
 POST localhost:8080/api/v1/article/aaa-bbb-ccc-ddd
 Content-Type:  application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODk3OTE4MzUsImlkIjoyLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODk3OTU0MzUsImlzcyI6Imt1bnV6IHRlc3QgcG9ydGFsaSJ9.SUbPB6IjhwVho9T42N4lbFGHkUQ87-R3_PG-_NuCTTV5o06uJRHdCyD_uUYqFDk2O-Fl_ODFwI8s2vfi8pTXFQ
+Authorization: Basic YWRtaW46MTIzNDU=
 
 {
   "title": "Valish",
@@ -31,11 +31,13 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODk3OTE4MzUsImlkIjoyLCJyb
 
 ### Delete Article
 DELETE localhost:8080/api/v1/article/aaaa-vvvv-dddd-ssss
+Authorization: Basic YWRtaW46MTIzNDU=
+
 
 ### change status
 POST localhost:8080/api/v1/article/aaa-bbb-ccc-ddd
 Content-Type:  application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODk3OTE4MzUsImlkIjoyLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODk3OTU0MzUsImlzcyI6Imt1bnV6IHRlc3QgcG9ydGFsaSJ9.SUbPB6IjhwVho9T42N4lbFGHkUQ87-R3_PG-_NuCTTV5o06uJRHdCyD_uUYqFDk2O-Fl_ODFwI8s2vfi8pTXFQ
+Authorization: Basic YWRtaW46MTIzNDU=
 
 {
   "status": "PUBLISHED"
@@ -43,5 +45,6 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODk3OTE4MzUsImlkIjoyLCJyb
 
 ### get last 5
 GET localhost:8080/api/v1/article/get5
+
 
 

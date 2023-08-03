@@ -21,14 +21,14 @@ public class ArticleTypeController {
     @Autowired
     private ArticleTypeService articleTypeService;
 
-    @PostMapping("")
-    public ResponseEntity<?> create(@RequestBody ArticleTypeDTO articleType,  HttpServletRequest request){
-        JwtDTO jwtDTO = SecurityUtil.hasRole(request, ProfileRole.ADMIN);
-        ArticleTypeDTO response = articleTypeService.add(articleType,jwtDTO.getId());
+    @PostMapping("/admin")
+    public ResponseEntity<?> create(@RequestBody ArticleTypeDTO articleType){
+//        JwtDTO jwtDTO = SecurityUtil.hasRole(request, ProfileRole.ADMIN);
+        ArticleTypeDTO response = articleTypeService.add(articleType,1);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/admin/{id}")
     public ResponseEntity<?> update(@RequestBody ArticleTypeDTO articleType,
                                     @PathVariable("id") Integer id,
                                     HttpServletRequest request){
@@ -36,7 +36,7 @@ public class ArticleTypeController {
         return ResponseEntity.ok(articleTypeService.update(id, articleType,jwtDTO.getId()));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/admin/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") Integer id,
                                     HttpServletRequest request){
         JwtDTO jwtDTO = SecurityUtil.hasRole(request, ProfileRole.ADMIN);
@@ -47,7 +47,7 @@ public class ArticleTypeController {
         return ResponseEntity.badRequest().body("Student not found");
     }
 
-    @GetMapping("/all")
+    @GetMapping("/admin/all")
     public List<ArticleTypeDTO> all(){
         return articleTypeService.getAll();
     }

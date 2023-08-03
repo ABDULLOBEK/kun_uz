@@ -1,7 +1,7 @@
 ### Create student
 POST localhost:8080/api/v1/region/admin/create
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2OTA0Mzg1NzMsImlkIjozLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2OTA0NDIxNzMsImlzcyI6Imt1bnV6IHRlc3QgcG9ydGFsaSJ9.E2pDgVHld3N1_-3OkWBcxD3nUwvfmKDygpUPxNkMUoWUJv8sfx7ZpLtYNrWPFQ11HcFt-070aPaXyvj9LJeG9A
+Authorization: Basic YWRtaW46MTIzNDU=
 
 
 {
@@ -15,7 +15,7 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2OTA0Mzg1NzMsImlkIjozLCJyb
 ### Update by id
 PUT localhost:8080/api/v1/region/admin/2
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2OTA0Mzk0MTEsImlkIjozLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2OTA0NDMwMTEsImlzcyI6Imt1bnV6IHRlc3QgcG9ydGFsaSJ9.hioKB6oldHlJVzFPSq_s3QFoArtdnmHIx5j0Hj6MO6GMXkH9pdgjKrYq1mZJrrnN3p0zX2hWdmEMT5h9xDieXQ
+Authorization: Basic YWRtaW46MTIzNDU=
 
 {
   "orderNum": 1,

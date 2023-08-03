@@ -16,9 +16,9 @@ public class RegionService {
     @Autowired
     private RegionRepository regionRepository;
 
-    public RegionDTO add(RegionDTO dto, Integer prtId) {
+    public RegionDTO add(RegionDTO dto) {
         RegionEntity entity = toEntity(dto);
-        entity.setPrtId(prtId);
+//        entity.setPrtId(prtId);
         regionRepository.save(entity);
         dto.setId(entity.getId());
         return dto;
