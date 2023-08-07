@@ -2,7 +2,6 @@ package com.example.controller;
 
 import com.example.dto.ArticleTypeDTO;
 import com.example.dto.JwtDTO;
-import com.example.dto.RegionDTO;
 import com.example.enums.Language;
 import com.example.enums.ProfileRole;
 import com.example.service.ArticleTypeService;
@@ -32,14 +31,14 @@ public class ArticleTypeController {
     public ResponseEntity<?> update(@RequestBody ArticleTypeDTO articleType,
                                     @PathVariable("id") Integer id,
                                     HttpServletRequest request){
-        JwtDTO jwtDTO = SecurityUtil.hasRole(request, ProfileRole.ADMIN);
+        JwtDTO jwtDTO = SecurityUtil.hasRole(request, ProfileRole.ROLE_ADMIN);
         return ResponseEntity.ok(articleTypeService.update(id, articleType,jwtDTO.getId()));
     }
 
     @DeleteMapping("/admin/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") Integer id,
                                     HttpServletRequest request){
-        JwtDTO jwtDTO = SecurityUtil.hasRole(request, ProfileRole.ADMIN);
+        JwtDTO jwtDTO = SecurityUtil.hasRole(request, ProfileRole.ROLE_ADMIN);
         String  response = articleTypeService.delete(id);
         if(response.length()>0){
             return ResponseEntity.ok("Student Deleted");
@@ -55,7 +54,7 @@ public class ArticleTypeController {
     @GetMapping("/lang")
     public ResponseEntity<?> getByLang(@RequestParam("lang") Language lang,
                                        HttpServletRequest request){
-        JwtDTO jwtDTO = SecurityUtil.hasRole(request, ProfileRole.ADMIN);
+        JwtDTO jwtDTO = SecurityUtil.hasRole(request, ProfileRole.ROLE_ADMIN);
         return ResponseEntity.ok(articleTypeService.getByLang(lang));
     }
 

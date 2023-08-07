@@ -9,7 +9,6 @@ import com.example.util.SecurityUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +22,7 @@ public class ProfileController {
 
     @PostMapping(value =  "/admin")
     public ResponseEntity<?> create(@RequestBody ProfileDTO dto, HttpServletRequest request) {
-        JwtDTO jwtDTO = SecurityUtil.hasRole(request, ProfileRole.ADMIN, ProfileRole.MODERATOR);
+        JwtDTO jwtDTO = SecurityUtil.hasRole(request, ProfileRole.ROLE_ADMIN, ProfileRole.ROLE_MODERATOR);
         return ResponseEntity.ok(profileService.create(dto, jwtDTO.getId()));
     }
 
@@ -31,7 +30,7 @@ public class ProfileController {
     public ResponseEntity<?> update(@RequestBody ProfileDTO profile,
                                     @PathVariable("id") Integer id,
                                     HttpServletRequest request){
-        JwtDTO jwtDTO = SecurityUtil.hasRole(request, ProfileRole.ADMIN);
+        JwtDTO jwtDTO = SecurityUtil.hasRole(request, ProfileRole.ROLE_ADMIN);
         return ResponseEntity.ok(profileService.update(id, profile, jwtDTO.getId()));
     }
 
@@ -44,14 +43,14 @@ public class ProfileController {
 
     @GetMapping(value = "/admin/get")
     public ResponseEntity<List<ProfileDTO>> getAll( HttpServletRequest request) {
-        JwtDTO jwtDTO = SecurityUtil.hasRole(request, ProfileRole.ADMIN);
+        JwtDTO jwtDTO = SecurityUtil.hasRole(request, ProfileRole.ROLE_ADMIN);
         return ResponseEntity.ok(profileService.getAll());
     }
 
     @DeleteMapping("/admin/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable("id") Integer id,
                                           HttpServletRequest request){
-        JwtDTO jwtDTO = SecurityUtil.hasRole(request, ProfileRole.ADMIN);
+        JwtDTO jwtDTO = SecurityUtil.hasRole(request, ProfileRole.ROLE_ADMIN);
         return ResponseEntity.ok(profileService.delete(id));
     }
 
